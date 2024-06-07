@@ -12,7 +12,7 @@ const url = "https://665b0c8a003609eda45fa87a.mockapi.io/api/v1/tracks"
 
 const MusictList = () => {
     const [songs, setSongs] = useState([])
-    const { setAudio, currentTrack, isPlaying } = useContext(AudioContext)
+    const { setAudio, currentTrack, isPlaying, name } = useContext(AudioContext)
 
     useEffect(() => {
         axios.get(url).then((response) => {
@@ -34,7 +34,7 @@ const MusictList = () => {
             <Container style={{ display: 'flex', justifyContent: 'center', }} maxWidth="md">
                 <Card style={{ padding: 40, borderRadius: 20, }}>
                     <CardContent>
-                        {songs.map((track) => {
+                        {songs.filter(el => el.artists.toLowerCase().includes(name.toLowerCase())).map((track) => {
                             const min = Math.floor(track.duration / 60)
                             const remainderSecund = Math.floor(track.duration % 60)
                             return (

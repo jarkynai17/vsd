@@ -3,3 +3,16 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.white{
+  background: #fff;
+  height: 100vh;
+}
+.dark{
+  background: #414141;
+  color: #fff;
+  height: 100vh;
+  .MuiPoper-root{
+    background: #414141;
+  }
+}

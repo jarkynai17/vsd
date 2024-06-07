@@ -8,9 +8,19 @@ const audio = new Audio();
 const AppContext = (props) => {
     const [currentTrack, setCurrentTract] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [name, setName] = useState("")
+    const [thema, setThema] = useState("white")
+
+    const toggleThema = () => {
+        if (thema === "white") {
+            setThema("dark")
+        } else if (thema === "dark") {
+            setThema("white")
+        }
+    }
 
     const setAudio = (track) => {
-        if (currentTrack?.id !== track.id){
+        if (currentTrack?.id !== track.id) {
             setCurrentTract(track)
             audio.src = track.src;
             audio.play();
@@ -26,17 +36,21 @@ const AppContext = (props) => {
         }
     }
 
-    const setSearchText = () => {
-        console.log(name);  
+    const setSearchText = (name) => {
+        console.log(name);
+        setName(name)
     }
 
     const value = {
+        toggleThema,
+        thema,
+        setSearchText,
+        name,
         text: "Music App",
         setAudio,
         audio,
         currentTrack,
         isPlaying,
-        // audio
     }
     return (
         <AudioContext.Provider value={value}>
